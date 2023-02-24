@@ -13,6 +13,28 @@
       <h1>Weather Dashboard</h1>
   </header>
 
+  <div class="row">
+    <div class="col-lg-3 bg-light">
+      <h2 id="citySearch">Search for a City</h2>
+      <div class="input-group mb-3">
+        <input id="input" type="text" class="form-control" placeholder="Enter a City">
+      </div>
+      <div class="input-group-append">
+        <button class="btn btn-info mb3" type="button" id="searchButton">Search</button>
+      </div>
+    </div>
+
+    <div class="col-lg-8 bg-light text-black m-2 rounded">
+      <div id="currentDay">
+        <h1 id="cityName">Please Enter a City in the Search Bar.</h1>
+        <div class="image"><img src="dots.png" class="imgClass" id="img" alt=""></div>
+        <p id="temp">Temperature</p>
+        <p id="wind">Wind</p>
+        <p id="humidity">humidity</p>
+      </div>
+    </div>
+  </div>
+
   <script src="./main/assets/js/script.js"></script>
 </body>
 </html>
