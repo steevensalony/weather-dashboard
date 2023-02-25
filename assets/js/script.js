@@ -2,13 +2,17 @@ let searchbtn = document.getElementById('searchButton');
 let userInput = document.getElementById('input');
 let savedHistory = document.getElementById('history');
 let cityNames = document.getElementById('cityName');
+
+// Getting user history to local storage
 let userHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
 
+// Fetching data from API
 function fetchWeatherData(city) {
   fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=2304b782cf519af6ae0e91a9af87effa')
     .then(response => response.json())
     .then(data => {
-      console.log(data)
+      
+      // Getting data for current day
       for (let i = 0; i < 5; i++) {
         document.getElementById('temp').innerHTML = 'Temp: ' + (Number(data.list[i].main.temp - 273.15) * 9 / 5 + 32).toFixed() + ' °F';
         document.getElementById('wind').innerHTML = 'Wind: ' + (data.list[i].wind.speed) + ' MPH';
@@ -16,12 +20,14 @@ function fetchWeatherData(city) {
         document.getElementById('img').src = " http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + ".png";
       }
 
+      // Getting date and city name for current day
       const date = new Date(data.list[0].dt * 1000);
       const day = date.getDate();
       const month = date.getMonth() + 1;
       const year = date.getFullYear();
       cityNames.innerHTML = data.city.name + ' ' + month + "/" + day + "/" + year;
 
+      // Getting data and date for each of the next 5 days
       for (let i = 0; i < 5; i++) {
         document.getElementById('date' + (i + 1)).innerText = month + "/" + day + "/" + year;
         document.getElementById('temp' + (i + 1)).innerText = 'Temp: ' + (Number(data.list[i].main.temp - 273.15) * 9 / 5 + 32).toFixed() + ' °F';
@@ -35,6 +41,7 @@ function fetchWeatherData(city) {
     .catch(error => console.log('error', error));
 }
 
+// Getting user input
 function getCityName() {
   fetchWeatherData(userInput.value);
 
@@ -52,6 +59,7 @@ function getCityName() {
   })
 };
 
+// Rendering the users search history on the page
 function renderHistory() {
 
   for (let i = 0; i < userHistory.length; i++) {
@@ -70,8 +78,11 @@ function renderHistory() {
 
 renderHistory();
 
+// Getting data when user clicks search
 searchbtn.addEventListener('click', function () {
   let userSearch = userInput.value;
+  
+  // Pushing user history into an array
   userHistory.push(userSearch);
   localStorage.setItem("cityHistory", JSON.stringify(userHistory));
   getCityName();
