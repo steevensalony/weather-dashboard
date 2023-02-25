@@ -10,8 +10,8 @@ This was a challenge given by our bootcamp instructors
 
 ## Instalation
 
-To install this code, simply click on the url to my repository [https://github.com/steevensalony/password-generator] and clone the ssh key to your local machine. 
-this is also the link to the website https://steevensalony.github.io/password-generator/
+To install this code, simply click on the url to my repository [https://steevensalony.github.io/weather-dashboard/] and clone the ssh key to your local machine. 
+this is also the link to the website https://steevensalony.github.io/weather-dashboard/
 
 ## Usage
 
