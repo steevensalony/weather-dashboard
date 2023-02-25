@@ -1,6 +1,6 @@
 # Weather Dashboard
 
-![alt text](https://github.com/steevensalony/weather-dashboard/blob/main/assets/image.jpg?raw=true)
+![alt text](https://github.com/steevensalony/weather-dashboard/blob/main/assets/images/Screenshot.png?raw=true)
 
 ## Description
 
