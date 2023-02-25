@@ -1,6 +1,6 @@
 # Weather Dashboard
 
-<img src="/Users/steeven/bootcamp/weather-dashboard/assets/images/Screenshot 2023-02-24 at 8.42.57 PM.png" alt="Alt text" title="Optional title">
+![](https://github.com/steevensalony/weather-dashboard/blob/main/assets/images/Screenshot%202023-02-24%20at%208.42.57%20PM.png)
 
 ## Description
 
