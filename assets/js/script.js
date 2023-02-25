@@ -2,9 +2,10 @@ let searchbtn = document.getElementById('searchButton');
 let userInput = document.getElementById('input');
 let savedHistory = document.getElementById('history');
 let cityNames = document.getElementById('cityName');
+let userHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
 
-function fetchWeatherData(cityName) {
-  fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=2304b782cf519af6ae0e91a9af87effa')
+function fetchWeatherData(city) {
+  fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=2304b782cf519af6ae0e91a9af87effa')
     .then(response => response.json())
     .then(data => {
       console.log(data)
@@ -23,7 +24,6 @@ function fetchWeatherData(cityName) {
 
       for (let i = 0; i < 5; i++) {
         document.getElementById('date' + (i + 1)).innerText = month + "/" + day + "/" + year;
-        // document.getElementById('date' + (i + 1)).innerText = data.list[i].dt_txt;
         document.getElementById('temp' + (i + 1)).innerText = 'Temp: ' + (Number(data.list[i].main.temp - 273.15) * 9 / 5 + 32).toFixed() + ' °F';
         document.getElementById('wind' + (i + 1)).innerHTML = 'Wind: ' + (data.list[i].wind.speed) + ' MPH';
         document.getElementById('humidity' + (i + 1)).innerHTML = 'Humidity: ' + (data.list[i].main.humidity) + ' %';
@@ -39,6 +39,7 @@ function getCityName() {
   fetchWeatherData(userInput.value);
 
   let inputEl = document.createElement('input');
+
   inputEl.setAttribute('type', 'text');
   inputEl.setAttribute('readonly', true);
   inputEl.setAttribute('class', 'form-control d-block bg-white');
@@ -51,7 +52,8 @@ function getCityName() {
   })
 };
 
-function renderSearchHistory() {
+function renderHistory() {
+
   for (let i = 0; i < userHistory.length; i++) {
     let inputEl = document.createElement('input');
     inputEl.setAttribute('type', 'text');
@@ -61,13 +63,12 @@ function renderSearchHistory() {
     inputEl.append(userHistory[i]);
     savedHistory.append(inputEl);
     inputEl.addEventListener('click', function () {
-      fetchWeatherData( userHistory[i])
+      fetchWeatherData(userHistory[i])
     })
   }
 }
 
-
-renderSearchHistory();
+renderHistory();
 
 searchbtn.addEventListener('click', function () {
   let userSearch = userInput.value;
