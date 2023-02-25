@@ -50,3 +50,28 @@ function getCityName() {
     fetchWeatherData(this.value);
   })
 };
+
+function renderSearchHistory() {
+  for (let i = 0; i < userHistory.length; i++) {
+    let inputEl = document.createElement('input');
+    inputEl.setAttribute('type', 'text');
+    inputEl.setAttribute('readonly', true);
+    inputEl.setAttribute('class', 'form-control d-block bg-white');
+    inputEl.setAttribute('value', userHistory[i])
+    inputEl.append(userHistory[i]);
+    savedHistory.append(inputEl);
+    inputEl.addEventListener('click', function () {
+      fetchWeatherData( userHistory[i])
+    })
+  }
+}
+
+
+renderSearchHistory();
+
+searchbtn.addEventListener('click', function () {
+  let userSearch = userInput.value;
+  userHistory.push(userSearch);
+  localStorage.setItem("cityHistory", JSON.stringify(userHistory));
+  getCityName();
+})
