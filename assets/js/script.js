@@ -34,3 +34,19 @@ function fetchWeatherData(cityName) {
 
     .catch(error => console.log('error', error));
 }
+
+function getCityName() {
+  fetchWeatherData(userInput.value);
+
+  let inputEl = document.createElement('input');
+  inputEl.setAttribute('type', 'text');
+  inputEl.setAttribute('readonly', true);
+  inputEl.setAttribute('class', 'form-control d-block bg-white');
+  inputEl.setAttribute('value', userInput.value)
+  inputEl.append(userInput.value);
+  savedHistory.append(inputEl);
+
+  inputEl.addEventListener('click', function () {
+    fetchWeatherData(this.value);
+  })
+};
